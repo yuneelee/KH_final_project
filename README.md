@@ -24,6 +24,9 @@
 
 ## :pushpin:담당 부분
 
+전체적인 UI 구성, 스토리보드 제작 주도
+오분과외 로고 제작
+
 Front-end
 
 - 로그인
@@ -58,7 +61,9 @@ Front-end
 8-05_sale_withdrow
 8-06_singUpConfim
 
+
 ====
+
 
 Back-end
 
