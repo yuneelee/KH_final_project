@@ -13,13 +13,14 @@
 
 ## :pushpin:사용 기술
 
-- OS : Window
+- OS : Window11
 - Back-End : Java, Spring Framework, Mybatis 
 - Front-End : HTML5, CSS3, JavaScript, Jquery
 - DB : Oracle Cloud
 - IDE : Ecilpse 2021-12, SQL Developer, Visual Studio Code
 - WAS : Apache Tomcat9
 - TEST : junit5
+- Tool : figma, github, ERD-Cloud 
 
 
 ## :pushpin:담당한 부분
