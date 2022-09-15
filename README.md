@@ -17,8 +17,9 @@
 - Back-End : Java, Spring Framework, Mybatis 
 - Front-End : HTML5, CSS3, JavaScript, Jquery
 - DB : Oracle Cloud
-- IDE : Ecilpse 2022-09, SQL Developer 
-- WAS : Apache Tomcat
+- IDE : Ecilpse 2021-12, SQL Developer, Visual Studio Code
+- WAS : Apache Tomcat9
+- TEST : junit5
 
 
 ## :pushpin:담당 부분
