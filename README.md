@@ -25,12 +25,13 @@
 ## :pushpin:담당 부분
 
 전체적인 UI 구성, 스토리보드 제작 주도
+
 오분과외 로고 제작
 
 
-Front-end 구현
+# Front-end 구현
 
-- 로그인
+# 로그인
 - 1-02_login
 - 1-03_selectAccount
 - 1-05_sendMail
@@ -41,11 +42,11 @@ Front-end 구현
 - 1-11_notFoundEmail
 - 1-12_findMyPassword
 
-- 재화(손들기 구매)
+# 재화(손들기 구매)
 - 4-01_buyHands
 - 4-02_payPage
 
-- 관리자
+# 관리자
 - 8-00_adminLogin
 - 8-00_menuList
 - 8-01_managerST
@@ -66,7 +67,7 @@ Front-end 구현
 ====
 
 
-Back-end 구현
+# Back-end 구현
 
 - LoginController
 - HandController
