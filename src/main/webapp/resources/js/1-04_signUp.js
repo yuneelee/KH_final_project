@@ -57,7 +57,6 @@ $('#signupTTBtn').on('click', function(){
       formObj.attr('method','POST');
       formObj.attr('enctype','multipart/form-data');
       formObj.submit();
-      console.log("왜안날라가요");
 
       Swal.fire({
         title: "회원가입 신청완료!",

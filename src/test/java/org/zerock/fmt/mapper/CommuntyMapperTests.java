@@ -93,8 +93,8 @@ public class CommuntyMapperTests {
 		
 		CommunityDTO dto = new CommunityDTO();
 		
-		dto.setFb_title("이건제목");
-		dto.setFb_content("이건내용");
+		dto.setFb_title("제목");
+		dto.setFb_content("내용");
 		dto.setUser_email("test@gmail.com");
 		
 		log.info("\t+ 1.dto: {}", dto);

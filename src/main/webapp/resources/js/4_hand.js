@@ -48,14 +48,14 @@ let basket = {
                 var price = item.parentElement.parentElement.previousElementSibling.firstElementChild.getAttribute('value');
                 this.totalPrice += count * price;
             }
-        }, this); // forEach 2번째 파라메터로 객체를 넘겨서 this 가 객체리터럴을 가리키도록 함. - thisArg
+        }, this);
     },
-    //화면 업데이트
+
     updateUI: function () {
         document.querySelector('#sum_p_num').textContent = '상품갯수: ' + this.totalCount.formatNumber() + '개';
         document.querySelector('#sum_p_price').textContent = '합계금액: ' + this.totalPrice.formatNumber() + '원';
     },
-    //개별 수량 변경
+
     changePNum: function () {
         var item = document.querySelector('input[name=p_num]');
         var p_num = parseInt(item.getAttribute('value'));
@@ -68,9 +68,8 @@ let basket = {
 
         var price = item.parentElement.parentElement.previousElementSibling.firstElementChild.getAttribute('value');
         item.parentElement.parentElement.nextElementSibling.textContent = (newval * price).formatNumber()+"원";
-        //AJAX 업데이트 전송
 
-        //전송 처리 결과가 성공이면    
+  
         this.reCalc();
         this.updateUI();
     },
@@ -79,13 +78,3 @@ let basket = {
         document.querySelector('#total').textContent = '합계금액: ' + this.result.formatNumber() + '원';
     }
 }
-
-
-// 숫자 3자리 콤마찍기
-Number.prototype.formatNumber = function(){
-    if(this==0) return 0;
-    let regex = /(^[+-]?\d+)(\d{3})/;
-    let nstr = (this + '');
-    while (regex.test(nstr)) nstr = nstr.replace(regex, '$1' + ',' + '$2');
-    return nstr;
-};
