@@ -21,7 +21,7 @@
 - WAS : Apache Tomcat
 
 
-## :담당 부분
+## :pushpin:담당 부분
 
 Front-end
 
