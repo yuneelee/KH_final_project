@@ -31,7 +31,7 @@
 
 # Front-end 구현
 
-# 로그인
+ 로그인
 - 1-02_login
 - 1-03_selectAccount
 - 1-05_sendMail
@@ -42,11 +42,11 @@
 - 1-11_notFoundEmail
 - 1-12_findMyPassword
 
-# 재화(손들기 구매)
+ 재화(손들기 구매)
 - 4-01_buyHands
 - 4-02_payPage
 
-# 관리자
+ 관리자
 - 8-00_adminLogin
 - 8-00_menuList
 - 8-01_managerST
