@@ -22,14 +22,14 @@
 - TEST : junit5
 
 
-## :pushpin:담당 부분
+## :pushpin:담당한 부분
 
 전체적인 UI 구성, 스토리보드 제작 주도
 
 오분과외 로고 제작
 
 
-# Front-end 구현
+# Front-end
 
  로그인
 - 1-02_login
@@ -65,7 +65,7 @@
 
 
 
-# Back-end 구현
+# Back-end
 
 - LoginController
 - HandController
