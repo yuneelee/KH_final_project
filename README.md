@@ -20,7 +20,58 @@
 - IDE : Ecilpse 2022-09, SQL Developer 
 - WAS : Apache Tomcat
 
-## :pushpin:구현 기능
-1. 몰라..나중에 추가함........ 
-2.
-3. 
+
+## :담당 부분
+
+Front-end
+
+- 로그인
+1-02_login
+1-03_selectAccount
+1-05_sendMail
+1-06_completeSignup
+1-08_signupReq
+1-09_findMyEmail
+1-10_foundEmail
+1-11_notFoundEmail
+1-12_findMyPassword
+
+- 재화(손들기 구매)
+4-01_buyHands
+4-02_payPage
+
+- 관리자
+8-00_adminLogin
+8-00_menuList
+8-01_managerST
+8-01_managerTT
+8-01_managerTZ
+8-01_tutorInfo
+8-01_userInfo
+8-02_administrator
+8-03_answerBoard_comment
+8-03_answerBoard_NO
+8-03_answerBoard_OK
+8-04_admin_faq
+8-05_sale_sell
+8-05_sale_withdrow
+8-06_singUpConfim
+
+====
+
+Back-end
+
+LoginController
+HandController
+BuyMapper
+HandMapper
+BuyService
+BuyServiceImpl
+HandService
+HandServiceImpl
+각각 test 구현
+
+
+
+
+
