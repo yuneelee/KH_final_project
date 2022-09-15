@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	<!-- ============== 1. Hikari Configuration ===============-->
+	<!-- primary="true" 1개 이상의 컨텍시 기본값 하나만 설정하는 속성 -->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig" primary="true">
+		<description>HikariCP Configuration</description>
+
+		<!-- 1. JDBC 연결정보 속성들에 값 설정-->
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@db20220618135707_high?TNS_ADMIN=C:/opt/OracleCloudWallet/PROJECT" />
+		<property name="username" value="ADMIN" />
+		<property name="password" value="Oracle1234567" />
+
+		<!-- 2. Connection Pool의 작동방식과 관련된 속성들에 값 설정 -->
+		<property name="maximumPoolSize" value="10" />
+		<property name="minimumIdle" value="2" />
+		<property name="idleTimeout" value="10000" />
+		<property name="connectionTimeout" value="1000" />
+		<property name="connectionTestQuery" value="SELECT 1 FROM dual" />
+		<property name="dataSourceJNDI" value="jdbc/HikariCP" />
+		<property name="poolName" value="*** HikariDataSource ***"></property>
+	</bean>
+
+	<bean id="hikariDataSource"
+		class="com.zaxxer.hikari.HikariDataSource" destroy-method="close" 
+		primary="false" >
+		<description>HikariCP DataSource</description>
+		<constructor-arg ref="hikariConfig" />
+		<!-- ref : 생성자의 매개변수로 hikariConfig 빈을 사용 -->
+	</bean>
+
+
+	<!-- ============== 2. Mybatis Pooled Data Source Configuration ===============-->
+
+	<bean 
+		id="pooledDataSource"
+		class="org.apache.ibatis.datasource.pooled.PooledDataSource"
+		destroy-method="forceCloseAll"
+		primary="true">
+		<description> Mybatis Pooled Data Source</description>
+		<property name="driver" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+		<property name="url" value="jdbc:log4jdbc:oracle:thin:@db20220618135707_high?TNS_ADMIN=C:/opt/OracleCloudWallet/PROJECT" />
+		<property name="username" value="ADMIN" />
+		<property name="password" value="Oracle1234567" />
+		<property name="poolMaximumActiveConnections" value="5" />
+		<property name="poolMaximumIdleConnections" value="2" />
+		<property name="poolPingEnabled" value="true" />
+		<property name="poolPingQuery" value="SELECT 1 FROM dual" />
+		<property name="loginTimeout" value="1" />
+
+	</bean>
+
+
+	<!-- ============== 3. Mybatis Configuration ===============-->
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" > 
+
+		<property name="dataSource" ref="pooledDataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+
+	</bean>
+
+
+	<context:component-scan base-package="org.zerock.fmt.service"/>
+	<mybatis-spring:scan base-package="org.zerock.fmt.mapper"/>
+
+</beans>

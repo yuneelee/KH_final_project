@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.fmt.mapper.UserMapper">
+
+    <!-- 학생회원가입 -->
+    <insert id="insertStudent" parameterType="org.zerock.fmt.domain.UserDTO">
+        INSERT INTO tbl_user
+            (user_email, user_pw, user_nick, user_name, user_birth, user_gender, user_phone, 
+            st_school, st_grade, USER_GROUP)
+
+        VALUES(#{user_email}, #{user_pw}, #{user_nick}, #{user_name}, #{user_birth}, 
+                #{user_gender}, #{user_phone}, 
+                #{st_school}, #{st_grade}, 'Student')
+    </insert>
+
+    <!-- 튜터회원가입 -->
+    <insert id="insertTutor" parameterType="org.zerock.fmt.domain.UserDTO" >
+        INSERT INTO tbl_user
+            (user_email, user_pw, user_nick, user_name, user_birth, user_gender, user_phone, 
+            tt_school, tt_subject, tt_depart, user_group, pass)
+
+        VALUES(#{user_email}, #{user_pw}, #{user_nick}, #{user_name}, #{user_birth}, 
+                #{user_gender}, #{user_phone}, 
+                #{tt_school}, #{tt_subject}, #{tt_depart},
+                'Tutor' ,'Wait')
+    </insert>
+
+    <!-- 정보수정 -->
+    <update id="updateUser">
+        UPDATE tbl_user
+        <set>
+            <if test="user_pw != null">     user_pw=#{user_pw},</if>
+            <if test="user_nick !=null">    user_nick=#{user_nick},</if>
+            <if test="user_name !=null">    user_name=#{user_name},</if>
+            <if test="user_gender !=null">  user_gender=#{user_gender},</if>
+            <if test="user_birth !=null">   user_birth=#{user_birth},</if>
+            <if test="user_phone !=null">   user_phone=#{user_phone},</if>
+            <if test="st_school !=null">    st_school=#{st_school},</if>
+            <if test="st_grade !=null">     st_grade=#{st_grade},</if>
+            <if test="tt_school !=null">    tt_school=#{tt_school},</if>
+            <if test="tt_subject !=null">   tt_subject=#{tt_subject},</if>
+            <if test="tt_depart !=null">    tt_depart=#{tt_depart}</if>
+        </set>
+        WHERE user_email = #{user_email}
+    </update>
+
+    <!-- 비밀번호 찾기 -->
+    <update id="updatePW">
+        UPDATE tbl_user  
+        SET user_pw = #{user_pw}
+        WHERE user_email = #{user_email}
+    </update>
+
+    <!-- 유저활동정지 -->
+    <update id="updateUserStop">
+        UPDATE tbl_user
+        SET user_status='STOP',
+            withdrawal_date=CURRENT_DATE
+        WHERE 
+            user_email=#{user_email}
+    </update>
+
+    <!-- 손들기 구매(학생), 획득(튜터) -->
+    <update id="updateHandGet">
+        UPDATE  tbl_user
+        SET HANDS_WALLET = HANDS_WALLET + #{h_count}
+        WHERE user_email= #{user_email}
+    </update>
+    <!-- 손들기 사용(차감) -->
+    <update id="updateHandUse">
+        UPDATE  tbl_user
+        SET HANDS_WALLET = HANDS_WALLET - #{h_count}
+        WHERE user_email= #{user_email}
+    </update>
+
+    <!-- 카카오톡 -->
+<!--     <select id="findKakao" parameterType="java.util.HashMap" resultType="org.zerock.fmt.domain.UserDTO"> -->
+<!--         SELECT * FROM tbl_user WHERE user_eamil = #{userEmail} -->
+<!--     </select> -->
+
+<!--     <insert id="kakaoInsert" parameterMap="java.util.HashMap"> -->
+<!--         INSERT INTO tbl_user(user_email) -->
+<!--         VALUES(#{user_email}) -->
+<!--     </insert> -->
+
+    <!-- 유저 조회 -->
+    <select id="selectStudent" resultType="org.zerock.fmt.domain.UserVO">
+        SELECT /*+index_desc(tbl_user)*/ * 
+        FROM tbl_user
+        WHERE user_group='Student'
+        OFFSET (#{currPage}-1) * #{amount} ROW 
+        FETCH NEXT #{amount} ROWS ONLY
+    </select>
+    <select id="selectTutor" resultType="org.zerock.fmt.domain.UserVO">
+        SELECT /*+index_desc(tbl_user)*/ * 
+        FROM tbl_user
+        WHERE user_group='Tutor'
+        OFFSET (#{currPage}-1) * #{amount} ROW 
+        FETCH NEXT #{amount} ROWS ONLY
+    </select>
+    <select id="selectStopUser" resultType="org.zerock.fmt.domain.UserVO">
+        SELECT /*+index_desc(tbl_user)*/ * 
+        FROM tbl_user
+        WHERE USER_STATUS='STOP'
+        OFFSET (#{currPage}-1) * #{amount} ROW 
+        FETCH NEXT #{amount} ROWS ONLY
+    </select>
+    <!-- 총 회원수  -->
+    <select id="userCount" resultType="int">
+        SELECT count(*) 
+        FROM tbl_user 
+        WHERE user_group=#{userGroup, jdbcType=VARCHAR} 
+        OR user_status=#{status, jdbcType=VARCHAR}
+    </select>
+
+    <!-- 승인 대기 튜터 리스트 -->
+    <select id="selectWaitTutor" resultType="org.zerock.fmt.domain.UserVO">
+        SELECT /*+ index(tbl_user) asc */ * 
+        FROM TBL_USER 
+        WHERE PASS='Wait'
+        OFFSET (#{currPage}-1) * #{amount} ROW 
+        FETCH NEXT #{amount} ROWS ONLY
+    </select>
+
+
+</mapper>

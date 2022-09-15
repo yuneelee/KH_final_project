@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="org.zerock.fmt.mapper.CommunityMapper">
+
+        <insert id="insert" parameterType="java.util.Map">
+            INSERT INTO tbl_community (fb_number, fb_title, fb_content, user_email)
+            VALUES (FB_NUM.nextval, #{fb_title}, #{fb_content}, #{user_email})
+        </insert>
+    
+        <update id="update">
+            UPDATE tbl_community
+            SET 
+                fb_title = #{fb_title},
+                fb_content = #{fb_content},
+                fb_date = CURRENT_DATE
+            WHERE 
+            	fb_number = #{fb_number}     
+        </update>
+
+        
+        <insert id="insertSelectKey">
+            <selectKey keyProperty="bno" order="BEFORE" resultType="int">
+                SELECT ISEQ$$_93926.nextval FROM dual
+            </selectKey>
+
+            INSERT INTO tbl_community(title, content, writer)
+            VALUES (#{bno}, #{title}, #{content}, #{writer})
+        </insert>
+    	
+    	
+    </mapper>    
