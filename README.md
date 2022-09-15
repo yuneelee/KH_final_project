@@ -27,55 +27,56 @@
 전체적인 UI 구성, 스토리보드 제작 주도
 오분과외 로고 제작
 
-Front-end
+
+Front-end 구현
 
 - 로그인
-1-02_login
-1-03_selectAccount
-1-05_sendMail
-1-06_completeSignup
-1-08_signupReq
-1-09_findMyEmail
-1-10_foundEmail
-1-11_notFoundEmail
-1-12_findMyPassword
+- 1-02_login
+- 1-03_selectAccount
+- 1-05_sendMail
+- 1-06_completeSignup
+- 1-08_signupReq
+- 1-09_findMyEmail
+- 1-10_foundEmail
+- 1-11_notFoundEmail
+- 1-12_findMyPassword
 
 - 재화(손들기 구매)
-4-01_buyHands
-4-02_payPage
+- 4-01_buyHands
+- 4-02_payPage
 
 - 관리자
-8-00_adminLogin
-8-00_menuList
-8-01_managerST
-8-01_managerTT
-8-01_managerTZ
-8-01_tutorInfo
-8-01_userInfo
-8-02_administrator
-8-03_answerBoard_comment
-8-03_answerBoard_NO
-8-03_answerBoard_OK
-8-04_admin_faq
-8-05_sale_sell
-8-05_sale_withdrow
-8-06_singUpConfim
+- 8-00_adminLogin
+- 8-00_menuList
+- 8-01_managerST
+- 8-01_managerTT
+- 8-01_managerTZ
+- 8-01_tutorInfo
+- 8-01_userInfo
+- 8-02_administrator
+- 8-03_answerBoard_comment
+- 8-03_answerBoard_NO
+- 8-03_answerBoard_OK
+- 8-04_admin_faq
+- 8-05_sale_sell
+- 8-05_sale_withdrow
+- 8-06_singUpConfim
 
 
 ====
 
 
-Back-end
+Back-end 구현
 
-LoginController
-HandController
-BuyMapper
-HandMapper
-BuyService
-BuyServiceImpl
-HandService
-HandServiceImpl
-각각 test 구현
+- LoginController
+- HandController
+- BuyMapper
+- HandMapper
+- BuyService
+- BuyServiceImpl
+- HandService
+- HandServiceImpl
+- 각각 test 구현
 
 
 
